@@ -1,25 +1,22 @@
+import { Button, TextField } from "@material-ui/core";
 import Dinero from "dinero.js";
+import { Form } from "grommet";
 import React, {
   Component,
   FunctionComponent,
-  useState,
-  useEffect
+  useEffect,
+  useState
 } from "react";
 import { connect } from "react-redux";
-import { Formik } from "formik";
-import { ThunkDispatch, ThunkAction } from "redux-thunk";
-import { IAppState } from "../store/initialState.d";
 // tslint:disable-next-line: ordered-imports
 import {
   setFromCurrencySuccess,
   setToCurrencySuccess,
   switchCurrency
 } from "../store/currencyForm/actions";
-import { Button, TextField } from "@material-ui/core";
-import { Form } from "grommet";
-import { CurrencyFields } from "./CurrencyFields";
+import { IAppState } from "../store/initialState.d";
+
 import { convertThunk } from "../store/currencyForm/thunks/convertThunk";
-import { AnyAction } from "redux";
 export interface ICurrencyFormProps {
   fromCurrency: Dinero.Dinero;
   toCurrency: Dinero.Dinero;
@@ -32,36 +29,16 @@ export interface ICurrencyFormProps {
 const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
   ...props
 }: ICurrencyFormProps) => {
-  // const [fromAmount, setFromAmount] = useState(props.fromCurrency.getAmount());
-  // const [fromCurrency, setFromCurrency] = useState(
-  //   props.fromCurrency.getCurrency()
-  // );
-  // const [toAmount, setToAmount] = useState(props.toCurrency.getAmount());
-  // const [toCurrency, setToCurrency] = useState(props.toCurrency.getCurrency());
-
   return (
     <div>
-      {/* <CurrencyFields
-        key={
-          props.fromCurrency.getCurrency() +
-          props.toCurrency.getAmount().toString() +
-          props.toCurrency.getCurrency() + props.toCurrency.getAmount()}
-        fromAmount={fromAmount}
-        fromCurrency={fromCurrency}
-        setFromAmount={setFromAmount}
-        setFromCurrency={setFromCurrency}
-        toAmount={toAmount}
-        toCurrency={toCurrency}
-        setToCurrency={setToCurrency}
-      /> */}
       <TextField
         value={props.fromCurrency.getCurrency()}
         type="text"
         onChange={event =>
           props.setFromCurrencySuccess(
             Dinero({
-              currency: event.target.value,
-              amount: props.fromCurrency.getAmount()
+              amount: props.fromCurrency.getAmount(),
+              currency: event.target.value
             })
           )
         }
@@ -71,10 +48,10 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
         value={props.fromCurrency.getAmount()}
         type="number"
         onChange={event =>
-          !isNaN(parseInt(event.target.value, 10))  &&
+          !isNaN(parseInt(event.target.value, 10)) &&
           props.setFromCurrencySuccess(
             Dinero({
-              amount: parseInt(event.target.value),
+              amount: parseInt(event.target.value, 10),
               currency: props.fromCurrency.getCurrency()
             })
           )

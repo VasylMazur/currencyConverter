@@ -1,4 +1,3 @@
-import { ICurrency } from "../../types/ICurrency";
 import { Dinero } from "dinero.js";
 
 export const SWITCH_CURRENCY = "SWITCH_CURRENCY";
