@@ -1,12 +1,7 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, Card } from "@material-ui/core";
 import Dinero from "dinero.js";
-import { Form } from "grommet";
-import React, {
-  Component,
-  FunctionComponent,
-  useEffect,
-  useState
-} from "react";
+
+import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 // tslint:disable-next-line: ordered-imports
 import {
@@ -30,8 +25,16 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
   ...props
 }: ICurrencyFormProps) => {
   return (
-    <div>
+    <Card
+      style={{
+        margin: "auto",
+        padding: "2em",
+        backgroundColor: "#a5b9ff",
+        width: "60%"
+      }}
+    >
       <TextField
+        style={{ marginBottom: "1em" }}
         value={props.fromCurrency.getCurrency()}
         type="text"
         onChange={event =>
@@ -45,21 +48,30 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
         label="From currency"
       />
       <TextField
+        style={{ marginBottom: "1em" }}
         value={props.fromCurrency.getAmount()}
-        type="number"
+        // type="number"
         onChange={event =>
-          !isNaN(parseInt(event.target.value, 10)) &&
+          !isNaN(parseFloat(event.target.value)) &&
           props.setFromCurrencySuccess(
             Dinero({
-              amount: parseInt(event.target.value, 10),
+              amount: parseFloat(event.target.value),
               currency: props.fromCurrency.getCurrency()
             })
           )
         }
         label="From amount"
       />
-
+      <Button
+        style={{ marginBottom: "1em" }}
+        variant="contained"
+        color="secondary"
+        onClick={() => props.switchCurrency()}
+      >
+        Switch
+      </Button>
       <TextField
+        style={{ marginBottom: "1em" }}
         type="text"
         label="To currency"
         value={props.toCurrency.getCurrency()}
@@ -73,32 +85,29 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
         }
       />
       <TextField
-        type="number"
+        style={{ marginBottom: "1em" }}
         label="To amount"
-        value={props.toCurrency.getAmount()}
+        value={props.toCurrency.toFormat()}
         disabled={true}
       />
       <Button
+        style={{ marginBottom: "1em", display: "block" }}
         variant="contained"
         color="primary"
         onClick={() => {
           alert("salam");
           props.convertThunk(
-            props.fromCurrency,
+            Dinero({
+              amount: props.fromCurrency.getAmount() * 100,
+              currency: props.fromCurrency.getCurrency()
+            }),
             props.toCurrency.getCurrency()
           );
         }}
       >
         Convert
       </Button>
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={() => props.switchCurrency()}
-      >
-        Switch
-      </Button>
-    </div>
+    </Card>
   );
 };
 const mapStateToProps = (state: IAppState) => {

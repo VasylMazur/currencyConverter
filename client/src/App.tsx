@@ -8,11 +8,13 @@ import Graph from "./currencyGraph/Graph";
 
 const App: React.FC = () => {
   return (
-    <>
+    <div className="AppGrid">
       <CurrencyForm />
-      <Graph />
-      <DateForm />
-    </>
+      <div>
+        <Graph />
+        <DateForm />
+      </div>
+    </div>
   );
 };
 

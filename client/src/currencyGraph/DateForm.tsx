@@ -1,13 +1,13 @@
-import React, { FunctionComponent } from "react";
 import { Button, TextField } from "@material-ui/core";
-import { IAppState, DateType } from "../store/initialState.d";
+import React, { FunctionComponent } from "react";
+import { connect } from "react-redux";
 import {
   setDateType,
   setFromDate,
   setToDate
 } from "../store/currencyGraph/actions";
-import { connect } from "react-redux";
 import { getCurrenciesThunk } from "../store/currencyGraph/thunks/getCurrenciesThunk";
+import { DateType, IAppState } from "../store/initialState.d";
 export interface IDateFormProps {
   dateType: DateType;
   fromDate: number;
@@ -20,7 +20,14 @@ export interface IDateFormProps {
 const DateForm: FunctionComponent<IDateFormProps> = ({
   ...props
 }: IDateFormProps) => {
-  
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    action: typeof setFromDate | typeof setToDate
+  ) => {
+    isNaN(parseInt(event.target.value, 10))
+      ? action(1)
+      : action(parseInt(event.target.value, 10));
+  };
   return (
     <div>
       <h1>
@@ -45,20 +52,16 @@ const DateForm: FunctionComponent<IDateFormProps> = ({
         type="number"
         label="Set start of graph"
         value={props.fromDate}
-        onChange={event =>
-          isNaN(parseInt(event.target.value, 10))
-            ? props.setFromDate(1)
-            : props.setFromDate(parseInt(event.target.value, 10))
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          handleInputChange(event, props.setFromDate)
         }
       />
       <TextField
         type="number"
         label="Set end of graph"
         value={props.toDate}
-        onChange={event =>
-          isNaN(parseInt(event.target.value))
-            ? props.setToDate(1)
-            : props.setToDate(parseInt(event.target.value))
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          handleInputChange(event, props.setFromDate)
         }
       />
       <Button

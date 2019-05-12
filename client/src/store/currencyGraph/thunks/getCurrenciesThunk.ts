@@ -2,7 +2,11 @@ import Dinero from "dinero.js";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { DateType, IAppState } from "../../initialState.d";
-import { clearGraphCurrencies, getGraphCurrenciesSuccess, graphError } from "../actions";
+import {
+  clearGraphCurrencies,
+  getGraphCurrenciesSuccess,
+  graphError
+} from "../actions";
 
 export const getCurrenciesThunk = (): ThunkAction<
   void,
@@ -31,7 +35,7 @@ export const getCurrenciesThunk = (): ThunkAction<
       }
       // alert(dataUrl);
       const convertedCurrency = await Dinero({
-        amount: 1,
+        amount: 100,
         currency: currencyNameFromConvert
       }).convert(currencyNameToConvert, {
         endpoint: dataUrl,
@@ -39,7 +43,7 @@ export const getCurrenciesThunk = (): ThunkAction<
       });
       dispatch(
         getGraphCurrenciesSuccess({
-          amount: convertedCurrency.getAmount(),
+          amount: convertedCurrency.getAmount() / 100,
           date: dateCrawler
         })
       );
