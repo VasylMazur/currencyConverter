@@ -10,7 +10,7 @@ import {
   switchCurrency
 } from "../store/currencyForm/actions";
 import { IAppState } from "../store/initialState.d";
-
+import "../styles/formStyles.css";
 import { convertThunk } from "../store/currencyForm/thunks/convertThunk";
 export interface ICurrencyFormProps {
   fromCurrency: Dinero.Dinero;
@@ -26,11 +26,9 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
 }: ICurrencyFormProps) => {
   return (
     <Card
+      className="CardForm"
       style={{
-        margin: "auto",
-        padding: "2em",
-        backgroundColor: "#a5b9ff",
-        width: "60%"
+        backgroundColor: "#a5b9ff"
       }}
     >
       <TextField

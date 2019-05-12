@@ -3,31 +3,37 @@ import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import {
   setDateType,
-  setFromDate,
-  setToDate
+  setFromDateYear,
+  setToDateYear,
+  setFromDateMonth,
+  setFromDateDay,
+  setToDateDay,
+  setToDateMonth
 } from "../store/currencyGraph/actions";
 import { getCurrenciesThunk } from "../store/currencyGraph/thunks/getCurrenciesThunk";
 import { DateType, IAppState } from "../store/initialState.d";
-export interface IDateFormProps {
-  dateType: DateType;
-  fromDate: number;
-  toDate: number;
-  getCurrenciesThunk: Function;
-  setDateType: typeof setDateType;
-  setFromDate: typeof setFromDate;
-  setToDate: typeof setToDate;
-}
+import { IDateFormProps, DateFormActions } from "./DateForm.d";
+import { GraphTextField, MAX_MONTH } from "./GraphTextField";
+
+export const handleInputChange = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  action: DateFormActions,
+  maxValue: number
+) => {
+  const numberedInputValue = parseInt(event.target.value, 10);
+  if (isNaN(numberedInputValue)) {
+    action(0);
+  } else {
+    if (numberedInputValue > maxValue) {
+      action(maxValue);
+    } else if (numberedInputValue > 0) {
+      action(numberedInputValue);
+    }
+  }
+};
 const DateForm: FunctionComponent<IDateFormProps> = ({
   ...props
 }: IDateFormProps) => {
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    action: typeof setFromDate | typeof setToDate
-  ) => {
-    isNaN(parseInt(event.target.value, 10))
-      ? action(1)
-      : action(parseInt(event.target.value, 10));
-  };
   return (
     <div>
       <h1>
@@ -48,21 +54,47 @@ const DateForm: FunctionComponent<IDateFormProps> = ({
       <Button color="primary" onClick={() => props.setDateType(DateType.DAY)}>
         Set date in days
       </Button>
-      <TextField
-        type="number"
-        label="Set start of graph"
-        value={props.fromDate}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          handleInputChange(event, props.setFromDate)
-        }
+      <GraphTextField
+        inputValue={props.fromDate.year}
+        inputType={DateType.YEAR}
+        action={props.setFromDateYear}
+        dateType={props.dateType}
+        isEnd={false}
       />
-      <TextField
-        type="number"
-        label="Set end of graph"
-        value={props.toDate}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          handleInputChange(event, props.setFromDate)
-        }
+      <GraphTextField
+        inputValue={props.fromDate.month}
+        inputType={DateType.MONTH}
+        action={props.setFromDateMonth}
+        dateType={props.dateType}
+        isEnd={false}
+      />
+      <GraphTextField
+        inputValue={props.fromDate.day}
+        inputType={DateType.DAY}
+        action={props.setFromDateDay}
+        dateType={props.dateType}
+        isEnd={false}
+      />
+      <GraphTextField
+        inputValue={props.toDate.year}
+        inputType={DateType.YEAR}
+        action={props.setToDateYear}
+        dateType={props.dateType}
+        isEnd={true}
+      />
+      <GraphTextField
+        inputValue={props.toDate.month}
+        inputType={DateType.MONTH}
+        action={props.setToDateMonth}
+        dateType={props.dateType}
+        isEnd={true}
+      />
+      <GraphTextField
+          inputValue={props.toDate.day}
+          inputType={DateType.DAY}
+          action={props.setToDateDay}
+          dateType={props.dateType}
+          isEnd={true}
       />
       <Button
         color="primary"
@@ -84,8 +116,12 @@ const mapStateTopProps = (state: IAppState) => {
 const mapDispatchToProps = {
   getCurrenciesThunk,
   setDateType,
-  setFromDate,
-  setToDate
+  setFromDateDay,
+  setFromDateMonth,
+  setFromDateYear,
+  setToDateDay,
+  setToDateMonth,
+  setToDateYear
 };
 export default connect(
   mapStateTopProps,

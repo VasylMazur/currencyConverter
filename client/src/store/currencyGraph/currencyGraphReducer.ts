@@ -6,8 +6,12 @@ import {
   GRAPH_ERROR,
   GraphActionTypes,
   SET_DATE_TYPE,
-  SET_FROM_DATE,
-  SET_TO_DATE
+  SET_FROM_DATE_YEAR,
+  SET_FROM_DATE_MONTH,
+  SET_FROM_DATE_DAY,
+  SET_TO_DATE_YEAR,
+  SET_TO_DATE_MONTH,
+  SET_TO_DATE_DAY
 } from "./actions.d";
 
 export const currencyGraphReducer = (
@@ -24,11 +28,32 @@ export const currencyGraphReducer = (
     case SET_DATE_TYPE: {
       return { ...state, dateType: action.payload };
     }
-    case SET_FROM_DATE: {
-      return { ...state, fromDate: action.payload };
+    case SET_FROM_DATE_YEAR: {
+      return {
+        ...state,
+        fromDate: { ...state.fromDate, year: action.payload }
+      };
     }
-    case SET_TO_DATE: {
-      return { ...state, toDate: action.payload };
+    case SET_FROM_DATE_MONTH: {
+      return {
+        ...state,
+        fromDate: { ...state.fromDate, month: action.payload }
+      };
+    }
+    case SET_FROM_DATE_DAY: {
+      return {
+        ...state,
+        fromDate: { ...state.fromDate, day: action.payload }
+      };
+    }
+    case SET_TO_DATE_YEAR: {
+      return { ...state, toDate: { ...state.toDate, year: action.payload } };
+    }
+    case SET_TO_DATE_MONTH: {
+      return { ...state, toDate: { ...state.toDate, month: action.payload } };
+    }
+    case SET_TO_DATE_DAY: {
+      return { ...state, toDate: { ...state.toDate, day: action.payload } };
     }
     case CLEAR_GRAPH_CURRENCIES: {
       return { ...state, currencies: [] };

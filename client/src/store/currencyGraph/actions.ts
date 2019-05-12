@@ -8,11 +8,19 @@ import {
   IGetGraphCurrenciesSuccess,
   IGraphError,
   ISetDateType,
-  ISetFromDate,
-  ISetToDate,
+  ISetFromDateMonth,
+  ISetFromDateYear,
+  ISetToDateDay,
+  ISetToDateMonth,
+  ISetToDateYear,
   SET_DATE_TYPE,
-  SET_FROM_DATE,
-  SET_TO_DATE
+  SET_FROM_DATE_MONTH,
+  SET_FROM_DATE_YEAR,
+  SET_TO_DATE_DAY,
+  SET_TO_DATE_MONTH,
+  SET_TO_DATE_YEAR,
+  ISetFromDateDay,
+  SET_FROM_DATE_DAY,
 } from "./actions.d";
 
 export const graphError = (payload: any): IGraphError => {
@@ -37,15 +45,39 @@ export const setDateType = (payload: DateType): ISetDateType => {
     type: SET_DATE_TYPE
   };
 };
-export const setFromDate = (payload: number): ISetFromDate => {
+export const setFromDateYear = (payload: number): ISetFromDateYear => {
   return {
     payload,
-    type: SET_FROM_DATE
+    type: SET_FROM_DATE_YEAR
   };
 };
-export const setToDate = (payload: number): ISetToDate => {
+export const setFromDateMonth = (payload: number): ISetFromDateMonth => {
   return {
     payload,
-    type: SET_TO_DATE
+    type: SET_FROM_DATE_MONTH
+  };
+};
+export const setFromDateDay = (payload: number): ISetFromDateDay => {
+  return {
+    payload,
+    type: SET_FROM_DATE_DAY
+  };
+};
+export const setToDateYear = (payload: number): ISetToDateYear => {
+  return {
+    payload,
+    type: SET_TO_DATE_YEAR
+  };
+};
+export const setToDateMonth = (payload: number): ISetToDateMonth => {
+  return {
+    payload,
+    type: SET_TO_DATE_MONTH
+  };
+};
+export const setToDateDay =  (payload: number): ISetToDateDay => {
+  return {
+    payload,
+    type: SET_TO_DATE_DAY
   };
 };

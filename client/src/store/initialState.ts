@@ -11,7 +11,15 @@ export const initialState: IAppState = {
     currencies: [],
     dateType: DateType.YEAR,
     errors: [],
-    fromDate: 2015,
-    toDate: 2019
+    fromDate: {
+      day: 1,
+      month: 1,
+      year: 2015
+    },
+    toDate: {
+      day: 1,
+      month: 1,
+      year: 2019
+    }
   }
 };

@@ -8,9 +8,17 @@ export const CLEAR_GRAPH_CURRENCIES = "CLEAR_GRAPH_CURRENCIES";
 
 export const SET_DATE_TYPE = "SET_DATE_TYPE";
 
-export const SET_FROM_DATE = "SET_FROM_DATE";
+export const SET_FROM_DATE_YEAR = "SET_FROM_DATE_YEAR";
 
-export const SET_TO_DATE = "SET_TO_DATE";
+export const SET_FROM_DATE_MONTH = "SET_FROM_DATE_YEAR_MONTH";
+
+export const SET_FROM_DATE_DAY = "SET_FROM_DATE_DAY"
+
+export const SET_TO_DATE_YEAR = "SET_TO_DATE_YEAR";
+
+export const SET_TO_DATE_MONTH = "SET_TO_DATE_MONTH";
+
+export const SET_TO_DATE_DAY = "SET_TO_DATE_DAY";
 
 export interface IClearGraphCurrencies {
   type: typeof CLEAR_GRAPH_CURRENCIES;
@@ -27,18 +35,38 @@ export interface ISetDateType {
   type: typeof SET_DATE_TYPE;
   payload: DateType;
 }
-export interface ISetFromDate {
-  type: typeof SET_FROM_DATE;
+export interface ISetFromDateYear {
+  type: typeof SET_FROM_DATE_YEAR;
   payload: number;
 }
-export interface ISetToDate {
-  type: typeof SET_TO_DATE;
+export interface ISetFromDateMonth {
+  type: typeof SET_FROM_DATE_MONTH;
+  payload: number;
+}
+export interface ISetFromDateDay {
+  type: typeof SET_FROM_DATE_DAY;
+  payload: number;
+}
+export interface ISetToDateYear {
+  type: typeof SET_TO_DATE_YEAR;
+  payload: number;
+}
+export interface ISetToDateMonth {
+  type: typeof SET_TO_DATE_MONTH;
+  payload: number;
+}
+export interface ISetToDateDay {
+  type: typeof SET_TO_DATE_DAY;
   payload: number;
 }
 export type GraphActionTypes =
+  | IGetGraphCurrenciesSuccess
   | IClearGraphCurrencies
   | IGraphError
-  | IGetGraphCurrenciesSuccess
   | ISetDateType
-  | ISetFromDate
-  | ISetToDate;
+  | ISetFromDateYear
+  | ISetFromDateMonth
+  | ISetFromDateDay
+  | ISetToDateYear
+  | ISetToDateMonth
+  | ISetToDateDay;

@@ -10,10 +10,10 @@ const App: React.FC = () => {
   return (
     <div className="AppGrid">
       <CurrencyForm />
-      <div>
+
         <Graph />
         <DateForm />
-      </div>
+
     </div>
   );
 };

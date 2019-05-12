@@ -22,16 +22,39 @@ export const getCurrenciesThunk = (): ThunkAction<
     const endDate = getState().graphState.toDate;
     const dateType = getState().graphState.dateType;
     let dataUrl: string = "";
-    for (let dateCrawler = startDate; dateCrawler <= endDate; dateCrawler++) {
+    let dateCrawler = 0;
+    let endPoint = 0;
+    if (dateType === DateType.DAY) {
+      dateCrawler = startDate.day;
+      endPoint = endDate.day;
+    } else if (dateType === DateType.MONTH) {
+      dateCrawler = startDate.month;
+      endPoint = endDate.month;
+    } else {
+      dateCrawler = startDate.year;
+      endPoint = endDate.year;
+    }
+
+    for (dateCrawler; dateCrawler <= endPoint; dateCrawler++) {
       if (dateType === DateType.YEAR) {
         // tslint:disable-next-line: max-line-length
-        dataUrl = `https://api.exchangeratesapi.io/${dateCrawler}-01-01?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
+        dataUrl = `https://api.exchangeratesapi.io/${dateCrawler}-${
+          startDate.month
+        }-${
+          startDate.day
+        }?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
       } else if (dateType === DateType.MONTH) {
         // tslint:disable-next-line: max-line-length
-        dataUrl = `https://api.exchangeratesapi.io/2019-${dateCrawler}-01?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
+        dataUrl = `https://api.exchangeratesapi.io/${
+          startDate.year
+        }-${dateCrawler}-${
+          startDate.day
+        }?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
       } else {
         // tslint:disable-next-line: max-line-length
-        dataUrl = `https://api.exchangeratesapi.io/2019-04-${dateCrawler}?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
+        dataUrl = `https://api.exchangeratesapi.io/${startDate.year}-${
+          startDate.month
+        }-${dateCrawler}?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
       }
       // alert(dataUrl);
       const convertedCurrency = await Dinero({
