@@ -37,26 +37,22 @@ export const getCurrenciesThunk = (): ThunkAction<
 
     for (dateCrawler; dateCrawler <= endPoint; dateCrawler++) {
       if (dateType === DateType.YEAR) {
-        // tslint:disable-next-line: max-line-length
         dataUrl = `https://api.exchangeratesapi.io/${dateCrawler}-${
           startDate.month
         }-${
           startDate.day
         }?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
       } else if (dateType === DateType.MONTH) {
-        // tslint:disable-next-line: max-line-length
         dataUrl = `https://api.exchangeratesapi.io/${
           startDate.year
         }-${dateCrawler}-${
           startDate.day
         }?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
       } else {
-        // tslint:disable-next-line: max-line-length
         dataUrl = `https://api.exchangeratesapi.io/${startDate.year}-${
           startDate.month
         }-${dateCrawler}?symbols=${currencyNameToConvert}&base=${currencyNameFromConvert}`;
       }
-      // alert(dataUrl);
       const convertedCurrency = await Dinero({
         amount: 100,
         currency: currencyNameFromConvert

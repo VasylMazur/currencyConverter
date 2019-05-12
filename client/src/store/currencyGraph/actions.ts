@@ -8,19 +8,19 @@ import {
   IGetGraphCurrenciesSuccess,
   IGraphError,
   ISetDateType,
+  ISetFromDateDay,
   ISetFromDateMonth,
   ISetFromDateYear,
   ISetToDateDay,
   ISetToDateMonth,
   ISetToDateYear,
   SET_DATE_TYPE,
+  SET_FROM_DATE_DAY,
   SET_FROM_DATE_MONTH,
   SET_FROM_DATE_YEAR,
   SET_TO_DATE_DAY,
   SET_TO_DATE_MONTH,
-  SET_TO_DATE_YEAR,
-  ISetFromDateDay,
-  SET_FROM_DATE_DAY,
+  SET_TO_DATE_YEAR
 } from "./actions.d";
 
 export const graphError = (payload: any): IGraphError => {

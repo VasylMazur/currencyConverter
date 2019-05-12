@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 import { setDateType } from "../store/currencyGraph/actions";
 import { DateType, IAppState } from "../store/initialState.d";
 import "../styles/graphInformation.css";
-export interface IChangeDateTypeProps {
-  dateType: DateType;
-  setDateType: typeof setDateType;
-}
+import { IChangeDateTypeProps } from "./ChangeDateType.d";
 const ChangeDateType: FunctionComponent<IChangeDateTypeProps> = ({
   ...props
 }: IChangeDateTypeProps) => {

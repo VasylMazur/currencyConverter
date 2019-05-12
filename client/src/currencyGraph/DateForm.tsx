@@ -1,4 +1,4 @@
-import { Button, Card, TextField } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import {
@@ -13,24 +13,9 @@ import {
 import { getCurrenciesThunk } from "../store/currencyGraph/thunks/getCurrenciesThunk";
 import { DateType, IAppState } from "../store/initialState.d";
 import "../styles/formStyles.css";
-import { DateFormActions, IDateFormProps } from "./DateForm.d";
-import { GraphTextField, MAX_MONTH } from "./GraphTextField";
-export const handleInputChange = (
-  event: React.ChangeEvent<HTMLInputElement>,
-  action: DateFormActions,
-  maxValue: number
-) => {
-  const numberedInputValue = parseInt(event.target.value, 10);
-  if (isNaN(numberedInputValue)) {
-    action(0);
-  } else {
-    if (numberedInputValue > maxValue) {
-      action(maxValue);
-    } else if (numberedInputValue > 0) {
-      action(numberedInputValue);
-    }
-  }
-};
+import { IDateFormProps } from "./DateForm.d";
+import { GraphTextField } from "./GraphTextField";
+
 const DateForm: FunctionComponent<IDateFormProps> = ({
   ...props
 }: IDateFormProps) => {
@@ -40,42 +25,42 @@ const DateForm: FunctionComponent<IDateFormProps> = ({
       <GraphTextField
         inputValue={props.fromDate.year}
         inputType={DateType.YEAR}
-        action={props.setFromDateYear}
+        inputAction={props.setFromDateYear}
         dateType={props.dateType}
         isEnd={false}
       />
       <GraphTextField
         inputValue={props.fromDate.month}
         inputType={DateType.MONTH}
-        action={props.setFromDateMonth}
+        inputAction={props.setFromDateMonth}
         dateType={props.dateType}
         isEnd={false}
       />
       <GraphTextField
         inputValue={props.fromDate.day}
         inputType={DateType.DAY}
-        action={props.setFromDateDay}
+        inputAction={props.setFromDateDay}
         dateType={props.dateType}
         isEnd={false}
       />
       <GraphTextField
         inputValue={props.toDate.year}
         inputType={DateType.YEAR}
-        action={props.setToDateYear}
+        inputAction={props.setToDateYear}
         dateType={props.dateType}
         isEnd={true}
       />
       <GraphTextField
         inputValue={props.toDate.month}
         inputType={DateType.MONTH}
-        action={props.setToDateMonth}
+        inputAction={props.setToDateMonth}
         dateType={props.dateType}
         isEnd={true}
       />
       <GraphTextField
           inputValue={props.toDate.day}
           inputType={DateType.DAY}
-          action={props.setToDateDay}
+          inputAction={props.setToDateDay}
           dateType={props.dateType}
           isEnd={true}
       />

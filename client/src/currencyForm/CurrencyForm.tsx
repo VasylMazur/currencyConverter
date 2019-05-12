@@ -1,4 +1,4 @@
-import { Button, TextField, Card } from "@material-ui/core";
+import { Button, Card, TextField } from "@material-ui/core";
 import Dinero from "dinero.js";
 
 import React, { FunctionComponent } from "react";
@@ -9,10 +9,10 @@ import {
   setToCurrencySuccess,
   switchCurrency
 } from "../store/currencyForm/actions";
+import { convertThunk } from "../store/currencyForm/thunks/convertThunk";
 import { IAppState } from "../store/initialState.d";
 import "../styles/formStyles.css";
-import { convertThunk } from "../store/currencyForm/thunks/convertThunk";
-import { ICurrencyFormProps } from "./CurrencyForm.d"
+import { ICurrencyFormProps } from "./CurrencyForm.d";
 
 const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
   ...props
@@ -30,7 +30,7 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
         style={{ marginBottom: "1em" }}
         value={props.fromCurrency.getCurrency()}
         type="text"
-        onChange={event =>
+        onChange={(event) =>
           props.setFromCurrencySuccess(
             Dinero({
               amount: props.fromCurrency.getAmount(),
@@ -43,8 +43,8 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
       <TextField
         style={{ marginBottom: "1em" }}
         value={props.fromCurrency.getAmount()}
-        // type="number"
-        onChange={event =>
+        type="number"
+        onChange={(event) =>
           !isNaN(parseFloat(event.target.value)) &&
           props.setFromCurrencySuccess(
             Dinero({
@@ -68,7 +68,7 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
         type="text"
         label="To currency"
         value={props.toCurrency.getCurrency()}
-        onChange={event =>
+        onChange={(event) =>
           props.setToCurrencySuccess(
             Dinero({
               amount: props.toCurrency.getAmount(),
@@ -88,7 +88,6 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
         variant="contained"
         color="primary"
         onClick={() => {
-          alert("salam");
           props.convertThunk(
             Dinero({
               amount: props.fromCurrency.getAmount() * 100,

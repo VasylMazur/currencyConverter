@@ -1,16 +1,10 @@
 import React, { FunctionComponent } from "react";
 
 import { connect } from "react-redux";
-import { DateType, IGraphDate } from "../store/initialState.d";
+import { DateType } from "../store/initialState.d";
 import { IAppState } from "../store/initialState.d";
-import "../styles/graphInformation.css"
-export interface IGraphInformationProps {
-  dateType: DateType;
-  fromCurrency: string;
-  toCurrency: string;
-  fromDate: IGraphDate;
-  toDate: IGraphDate;
-}
+import "../styles/graphInformation.css";
+import { IGraphInformationProps } from "./GraphInformation.d";
 
 const GraphInformation: FunctionComponent<IGraphInformationProps> = ({
   ...props

@@ -7,7 +7,6 @@ export const convertThunk = (
   dineroToConvert: Dinero.Dinero,
   convertCurrency: string
 ): ThunkAction<void, IAppState, null, AnyAction> => {
-  alert("masal");
   return (dispatch) => {
     dineroToConvert
       .convert(convertCurrency, {

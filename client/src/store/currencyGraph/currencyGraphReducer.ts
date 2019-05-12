@@ -6,12 +6,12 @@ import {
   GRAPH_ERROR,
   GraphActionTypes,
   SET_DATE_TYPE,
-  SET_FROM_DATE_YEAR,
-  SET_FROM_DATE_MONTH,
   SET_FROM_DATE_DAY,
-  SET_TO_DATE_YEAR,
+  SET_FROM_DATE_MONTH,
+  SET_FROM_DATE_YEAR,
+  SET_TO_DATE_DAY,
   SET_TO_DATE_MONTH,
-  SET_TO_DATE_DAY
+  SET_TO_DATE_YEAR
 } from "./actions.d";
 
 export const currencyGraphReducer = (
