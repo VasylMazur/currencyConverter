@@ -1,20 +1,20 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, Card, TextField } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import {
   setDateType,
-  setFromDateYear,
-  setToDateYear,
-  setFromDateMonth,
   setFromDateDay,
+  setFromDateMonth,
+  setFromDateYear,
   setToDateDay,
-  setToDateMonth
+  setToDateMonth,
+  setToDateYear
 } from "../store/currencyGraph/actions";
 import { getCurrenciesThunk } from "../store/currencyGraph/thunks/getCurrenciesThunk";
 import { DateType, IAppState } from "../store/initialState.d";
-import { IDateFormProps, DateFormActions } from "./DateForm.d";
+import "../styles/formStyles.css";
+import { DateFormActions, IDateFormProps } from "./DateForm.d";
 import { GraphTextField, MAX_MONTH } from "./GraphTextField";
-
 export const handleInputChange = (
   event: React.ChangeEvent<HTMLInputElement>,
   action: DateFormActions,
@@ -35,25 +35,8 @@ const DateForm: FunctionComponent<IDateFormProps> = ({
   ...props
 }: IDateFormProps) => {
   return (
-    <div>
-      <h1>
-        Date type now is in{" "}
-        {props.dateType === DateType.YEAR
-          ? "years"
-          : props.dateType === DateType.MONTH
-          ? "months"
-          : "days"}
-      </h1>
-      <Button color="primary" onClick={() => props.setDateType(DateType.YEAR)}>
-        Set date in years
-      </Button>
-      <Button color="primary" onClick={() => props.setDateType(DateType.MONTH)}>
-        {" "}
-        Set date in months{" "}
-      </Button>
-      <Button color="primary" onClick={() => props.setDateType(DateType.DAY)}>
-        Set date in days
-      </Button>
+    <Card className="CardForm" style={{backgroundColor: "#ffa4d9"}}>
+
       <GraphTextField
         inputValue={props.fromDate.year}
         inputType={DateType.YEAR}
@@ -97,13 +80,13 @@ const DateForm: FunctionComponent<IDateFormProps> = ({
           isEnd={true}
       />
       <Button
-        color="primary"
+        color="secondary"
         variant="contained"
         onClick={() => props.getCurrenciesThunk()}
       >
         Build graph
       </Button>
-    </div>
+    </Card>
   );
 };
 const mapStateTopProps = (state: IAppState) => {

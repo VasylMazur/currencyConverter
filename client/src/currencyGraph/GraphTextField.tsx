@@ -1,8 +1,9 @@
+import { TextField } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
 import { DateFormActions } from "./DateForm.d";
-import { TextField } from "@material-ui/core";
 
 import { DateType } from "../store/initialState.d";
+import "../styles/formStyles.css";
 import { handleInputChange } from "./DateForm";
 export interface IGraphTextFieldProps {
   inputValue: number;
@@ -25,10 +26,11 @@ export const GraphTextField: FunctionComponent<IGraphTextFieldProps> = ({
     inputType === DateType.YEAR ? 2019 : inputType === DateType.MONTH ? 12 : 30;
   return (
     <TextField
+      style={{ marginBottom: "1em" }}
       type="number"
-      label={`Set ${inputType} in the ${isEnd ? "end" : "start"} of graph`}
+      label={`${inputType} in the ${isEnd ? "end" : "start"} of graph`}
       value={inputValue === 0 ? "" : inputValue}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
         handleInputChange(event, action, maxValue)
       }
       disabled={isEnd && inputType !== dateType}

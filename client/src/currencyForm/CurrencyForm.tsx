@@ -12,14 +12,7 @@ import {
 import { IAppState } from "../store/initialState.d";
 import "../styles/formStyles.css";
 import { convertThunk } from "../store/currencyForm/thunks/convertThunk";
-export interface ICurrencyFormProps {
-  fromCurrency: Dinero.Dinero;
-  toCurrency: Dinero.Dinero;
-  convertThunk: Function;
-  setFromCurrencySuccess: typeof setFromCurrencySuccess;
-  setToCurrencySuccess: typeof setToCurrencySuccess;
-  switchCurrency: typeof switchCurrency;
-}
+import { ICurrencyFormProps } from "./CurrencyForm.d"
 
 const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
   ...props
@@ -28,7 +21,9 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
     <Card
       className="CardForm"
       style={{
-        backgroundColor: "#a5b9ff"
+        backgroundColor: "#a5b9ff",
+        paddingBottom: "4em",
+        paddingTop: "4em"
       }}
     >
       <TextField
@@ -63,7 +58,7 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
       <Button
         style={{ marginBottom: "1em" }}
         variant="contained"
-        color="secondary"
+        color="inherit"
         onClick={() => props.switchCurrency()}
       >
         Switch
@@ -85,7 +80,7 @@ const CurrencyForm: FunctionComponent<ICurrencyFormProps> = ({
       <TextField
         style={{ marginBottom: "1em" }}
         label="To amount"
-        value={props.toCurrency.toFormat()}
+        value={props.toCurrency.getAmount() / 100}
         disabled={true}
       />
       <Button
