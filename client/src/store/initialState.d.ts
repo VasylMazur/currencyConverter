@@ -1,15 +1,7 @@
 import { Dinero } from "dinero.js";
-export enum DateType {
-  YEAR = "year",
-  MONTH = "month",
-  DAY = "day"
-}
-export interface IGraphDate {
-  day: number;
-  month: number;
-  year: number;
-}
-export interface IGraphCurrency { amount: number; date: number }
+
+
+
 export interface IFormState {
   fromCurrency: Dinero;
   toCurrency: Dinero;

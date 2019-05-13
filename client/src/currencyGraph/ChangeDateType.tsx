@@ -2,9 +2,11 @@ import { Button } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import { setDateType } from "../store/currencyGraph/actions";
-import { DateType, IAppState } from "../store/initialState.d";
+import {  IAppState } from "../store/initialState.d";
 import "../styles/graphInformation.css";
+import { DateType } from "../types/DateType.d";
 import { IChangeDateTypeProps } from "./ChangeDateType.d";
+
 const ChangeDateType: FunctionComponent<IChangeDateTypeProps> = ({
   ...props
 }: IChangeDateTypeProps) => {

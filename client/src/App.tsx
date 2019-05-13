@@ -3,9 +3,9 @@ import React from "react";
 import { connect } from "react-redux";
 import "./App.css";
 import CurrencyForm from "./currencyForm/CurrencyForm";
+import ChangeDateType from "./currencyGraph/ChangeDateType";
 import DateForm from "./currencyGraph/DateForm";
 import Graph from "./currencyGraph/Graph";
-import ChangeDateType from "./currencyGraph/ChangeDateType";
 import GraphInformation from "./currencyGraph/GraphInformation";
 
 const App: React.FC = () => {

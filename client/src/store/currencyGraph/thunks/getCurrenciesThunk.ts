@@ -1,7 +1,8 @@
 import Dinero from "dinero.js";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { DateType, IAppState } from "../../initialState.d";
+import { DateType } from "../../../types/DateType.d";
+import { IAppState } from "../../initialState.d";
 import {
   clearGraphCurrencies,
   getGraphCurrenciesSuccess,

@@ -1,4 +1,6 @@
-import { DateType, IGraphDate } from './../store/initialState.d';
+import { IGraphDate } from './../types/IGraphDate.d';
+import { DateType } from './../types/DateType.d';
+
 export interface IGraphInformationProps {
     dateType: DateType;
     fromCurrency: string;

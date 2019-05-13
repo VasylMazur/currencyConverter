@@ -1,5 +1,5 @@
-import { DateType, IGraphCurrency } from "../initialState.d";
-
+import { DateType } from "../../types/DateType";
+import { IGraphCurrency } from "../../types/IGraphCurrency";
 import {
   CLEAR_GRAPH_CURRENCIES,
   GET_GRAPH_CURRENCIES_SUCCESS,

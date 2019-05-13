@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
 
 import { connect } from "react-redux";
-import { DateType } from "../store/initialState.d";
 import { IAppState } from "../store/initialState.d";
 import "../styles/graphInformation.css";
+import { DateType } from "../types/DateType.d";
 import { IGraphInformationProps } from "./GraphInformation.d";
 
 const GraphInformation: FunctionComponent<IGraphInformationProps> = ({

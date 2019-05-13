@@ -7,13 +7,9 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { initialState } from "./store/initialState";
 import { rootReducer } from "./store/rootReducer";
-import Dinero from 'dinero.js'
+
 import { Provider } from "react-redux";
-const devToolsWindow = window as any;
-const enhancer = devToolsWindow.devToolsExtension
-  ? devToolsWindow.devToolsExtension()(createStore)
-  : createStore;
-// const store = enhancer(rootReducer, initialState, applyMiddleware(thunk));
+
 const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
 ReactDOM.render(

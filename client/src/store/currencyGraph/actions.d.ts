@@ -1,4 +1,6 @@
-import { DateType, IGraphCurrency } from "../initialState.d";
+import { IGraphCurrency } from "../../types/IGraphCurrency";
+import { DateType } from "../../types/DateType";
+
 
 export const GRAPH_ERROR = "GRAPH_ERROR";
 

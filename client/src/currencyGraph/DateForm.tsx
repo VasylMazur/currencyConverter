@@ -11,8 +11,9 @@ import {
   setToDateYear
 } from "../store/currencyGraph/actions";
 import { getCurrenciesThunk } from "../store/currencyGraph/thunks/getCurrenciesThunk";
-import { DateType, IAppState } from "../store/initialState.d";
+import { IAppState } from "../store/initialState.d";
 import "../styles/formStyles.css";
+import { DateType } from "../types/DateType.d";
 import { IDateFormProps } from "./DateForm.d";
 import { GraphTextField } from "./GraphTextField";
 

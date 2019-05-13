@@ -1,5 +1,6 @@
 import Dinero from "dinero.js";
-import { DateType, IAppState } from "./initialState.d";
+import { DateType } from "../types/DateType.d";
+import { IAppState } from "./initialState.d";
 
 export const initialState: IAppState = {
   formState: {

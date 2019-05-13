@@ -2,8 +2,8 @@ import { TextField } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
 import { DateFormActions } from "./DateForm.d";
 
-import { DateType } from "../store/initialState.d";
 import "../styles/formStyles.css";
+import { DateType } from "../types/DateType.d";
 import { IGraphTextFieldProps } from "./GraphTextField.d";
 
 export const GraphTextField: FunctionComponent<IGraphTextFieldProps> = ({
