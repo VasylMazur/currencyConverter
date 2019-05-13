@@ -1,0 +1,13 @@
+.AppGrid {
+  display: grid;
+  margin: 2em;
+  grid-template-columns: 25% auto 25%;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
